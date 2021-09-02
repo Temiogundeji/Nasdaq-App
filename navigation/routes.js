@@ -12,7 +12,7 @@ const Navigator = () => {
     <NavigationContainer>
       <Stack.Navigator initialRouteName="ExploreScreen">
         <Stack.Screen
-          options={{ headerShown: false, initialRouteName: 'StockDetailsScreen' }}
+          options={{ headerShown: false }}
           name="StockDetailsScreen"
           component={StockDetailsScreen}
         />

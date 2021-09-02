@@ -1,38 +1,57 @@
-import React from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
-import { List, Divider } from '@ui-kitten/components';
+import React, { useEffect } from 'react';
+import { StyleSheet, SafeAreaView, ActivityIndicator, View } from 'react-native';
+import { List, Divider, Text } from '@ui-kitten/components';
 import StockListItem from '../components/StockListItem';
+import { useAppState, useActions, useEffects } from '../overmind';
+// import SearchBar from '../components/SearchBar';
 
-const data = new Array(8).fill({
+const data = new Array(19).fill({
   title: 'AAPL',
   description: 'Apple inc',
 });
 
-const StockList = ({ stocks }) => {
-  const renderItem = ({ item, index }) => (
-    <StockListItem id={index} ticker={item.title} name={item.description} />
-  );
+const renderItem = ({ item, index }) => (
+  <StockListItem id={index} ticker={item.ticker} name={item.name} />
+);
+
+const StockList = () => {
+  const action = useActions();
+  useEffect(() => {
+    action.getStocks();
+  }, []);
+  const state = useAppState();
+  const {
+    isLoadingStocks,
+    stocks: { results },
+  } = state;
+
+  console.log();
   return (
-    <ScrollView>
-      <View>
-        <List
-          style={Styles.container}
-          data={data}
-          ItemSeparatorComponent={Divider}
-          renderItem={renderItem}
-        />
+    <SafeAreaView>
+      <List
+        style={Styles.container}
+        data={results}
+        ItemSeparatorComponent={Divider}
+        renderItem={renderItem}
+      />
+      <View style={Styles.footer}>
+        <ActivityIndicator size="20" color="red" />
       </View>
-    </ScrollView>
+    </SafeAreaView>
   );
 };
 
 const Styles = StyleSheet.create({
   container: {
-    maxHeight: 700,
+    maxHeight: 1000,
     paddingRight: 12,
     paddingLeft: 12,
     paddingTop: 5,
     marginBottom: 5,
+  },
+  footerStyle: {
+    height: 50,
+    backgroundColor: 'coral',
   },
 });
 

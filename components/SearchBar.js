@@ -2,7 +2,7 @@ import React from 'react';
 import { View, StyleSheet, TouchableWithoutFeedback } from 'react-native';
 import { Icon, Input, Card, Text } from '@ui-kitten/components';
 
-const SearchBar = ({}) => {
+const SearchBar = ({ handleSearch = () => {}, data, queryText }) => {
   //Todo: Add Search Icon to Form
   return (
     <Card style={Styles.container}>
@@ -17,7 +17,6 @@ const Styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
-    // borderRadius: 25,
     height: 140,
     position: 'relative',
     padding: 5,

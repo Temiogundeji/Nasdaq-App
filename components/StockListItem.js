@@ -33,7 +33,9 @@ const Styles = StyleSheet.create({
     marginBottom: 5,
   },
   card: {
-    backgroundColor: '#aaaaa0',
+    backgroundColor: 'coral',
+    borderColor: 'coral',
+    marginBottom: 5,
   },
 });
 export default StockListItem;
