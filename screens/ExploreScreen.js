@@ -5,7 +5,7 @@ import StockList from '../components/StockList';
 
 const ExploreScreen = ({ navigation }) => (
   <View style={Styles.container}>
-    <SearchBar />
+    {/* <SearchBar /> */}
     <StockList />
   </View>
 );

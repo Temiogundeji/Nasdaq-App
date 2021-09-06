@@ -1,14 +1,21 @@
 import { Card, Text } from '@ui-kitten/components';
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Image } from 'react-native';
 
-const StockHeaderCard = () => {
+const StockHeaderCard = ({ ticker, name, price, logo, symbol }) => {
   return (
     <View style={Styles.container}>
       <Card style={Styles.card}>
-        <Text style={Styles.ticker}>APPL</Text>
-        <Text style={Styles.name}>Apple Inc</Text>
-        <Text style={Styles.price}>145.11</Text>
+        <View style={Styles.cardRow}>
+          <View style={Styles.cardLeft}>
+            <Text style={Styles.ticker}> {ticker || 'APPL'}</Text>
+            <Text style={Styles.name}>{name || 'Apple Inc'}</Text>
+            <Text style={Styles.price}>
+              <Text style={{ fontSize: 25 }}>{'\u0024'}</Text> {price || 145.11}
+            </Text>
+          </View>
+          <Image style={Styles.tinyLogo} source={{ uri: logo ? logo : symbol }} />
+        </View>
       </Card>
     </View>
   );
@@ -22,10 +29,10 @@ const Styles = StyleSheet.create({
     backgroundColor: 'oldlace',
   },
   card: {
+    display: 'flex',
+    flexDirection: 'row',
     backgroundColor: 'coral',
     borderRadius: 10,
-    display: 'flex',
-    flexDirection: 'column',
     borderColor: 'coral',
     shadowColor: '#000',
     shadowOffset: {
@@ -34,8 +41,20 @@ const Styles = StyleSheet.create({
     },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
-
     elevation: 5,
+  },
+  cardRow: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  cardLeft: {
+    width: '70%',
+  },
+  tinyLogo: {
+    width: 50,
+    height: 50,
   },
   ticker: {
     fontSize: 14,

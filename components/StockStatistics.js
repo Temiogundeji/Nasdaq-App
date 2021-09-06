@@ -1,46 +1,35 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
-import { Text, Card, Layout } from '@ui-kitten/components';
+import { Text, Card } from '@ui-kitten/components';
 
-const StockStatistics = () => {
+const StockStatistics = (props) => {
+  const { o, c, v, h, l } = props;
   return (
     <View style={Styles.container}>
       <Card style={Styles.card}>
         <Text style={Styles.title}>Statistics</Text>
         <View style={Styles.statRow}>
-          <View>
+          <View style={Styles.itemStyle}>
             <Text style={Styles.titleStyle}>Open</Text>
-            <Text>142.01</Text>
+            <Text>{o || 142.01}</Text>
           </View>
-          <View>
-            <Text style={Styles.titleStyle}>Open</Text>
-            <Text>142.01</Text>
+          <View style={Styles.itemStyle}>
+            <Text style={Styles.titleStyle}>Close</Text>
+            <Text>{c || 142.01}</Text>
           </View>
-          <View>
-            <Text style={Styles.titleStyle}>Open</Text>
-            <Text>142.01</Text>
-          </View>
-          <View>
-            <Text style={Styles.titleStyle}>Open</Text>
-            <Text>142.01</Text>
+          <View style={Styles.itemStyle}>
+            <Text style={Styles.titleStyle}>Volume</Text>
+            <Text>{v || 142.01}</Text>
           </View>
         </View>
         <View style={Styles.statRow}>
-          <View>
-            <Text style={Styles.titleStyle}>Open</Text>
-            <Text>142.01</Text>
+          <View style={Styles.itemStyle}>
+            <Text style={Styles.titleStyle}>High</Text>
+            <Text>{h || 142.01}</Text>
           </View>
-          <View>
-            <Text style={Styles.titleStyle}>Open</Text>
-            <Text>142.01</Text>
-          </View>
-          <View>
-            <Text style={Styles.titleStyle}>Open</Text>
-            <Text>142.01</Text>
-          </View>
-          <View>
-            <Text style={Styles.titleStyle}>Open</Text>
-            <Text>142.01</Text>
+          <View style={Styles.itemStyle}>
+            <Text style={Styles.titleStyle}>Low</Text>
+            <Text>{l || 142.01}</Text>
           </View>
         </View>
       </Card>
@@ -58,8 +47,7 @@ const Styles = StyleSheet.create({
     backgroundColor: 'coral',
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'flex-start',
-    justifyContent: 'flex-start',
+    paddingLeft: 0,
     borderColor: 'coral',
     borderRadius: 10,
     shadowColor: '#000',
@@ -71,6 +59,9 @@ const Styles = StyleSheet.create({
     shadowRadius: 3.84,
     elevation: 5,
     height: 230,
+  },
+  itemStyle: {
+    width: '30%',
   },
   title: {
     fontSize: 17,
@@ -88,7 +79,6 @@ const Styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     flexWrap: 'nowrap',
-    justifyContent: 'space-between',
     width: 390,
     marginBottom: 50,
   },

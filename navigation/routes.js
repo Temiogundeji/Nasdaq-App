@@ -10,7 +10,7 @@ const Stack = createStackNavigator();
 const Navigator = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="ExploreScreen">
+      <Stack.Navigator initialRouteName="StockDetailsScreen">
         <Stack.Screen
           options={{ headerShown: false }}
           name="StockDetailsScreen"

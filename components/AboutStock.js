@@ -1,26 +1,31 @@
 import React from 'react';
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import { Text, Card } from '@ui-kitten/components';
+import * as Linking from 'expo-linking';
 
-const AboutStock = () => {
+const AboutStock = ({ industry, description, url }) => {
+  const handlePress = () => {
+    Linking.openURL(url);
+  };
+
   return (
     <View style={Styles.container}>
       <Card style={Styles.card}>
         <View style={Styles.aboutHeader}>
           <Text style={Styles.title}>About</Text>
-          <TouchableOpacity style={Styles.button}>
+          <TouchableOpacity style={Styles.button} onPress={() => handlePress()}>
             <Text style={Styles.buttonText}>Website</Text>
           </TouchableOpacity>
         </View>
         <View style={Styles.industrySection}>
           <Text style={Styles.industryHeading}>Industry</Text>
-          <Text style={Styles.industryText}>Computer Hardware</Text>
+          <Text style={Styles.industryText}>{industry || 'Computer Hardware'}</Text>
         </View>
         <View style={Styles.description}>
           <Text style={Styles.descriptionHeading}>Description</Text>
           <Text style={Styles.descriptionText}>
-            Apple is a company founded by Steve Jobs and Steve Wozniak. Steve was the main man
-            behind Apple. His death was pathetic.
+            {description ||
+              'Apple is a company founded by Steve Jobs and Steve Wozniak. Steve was the main man behind Apple. His death was pathetic.'}
           </Text>
         </View>
       </Card>
