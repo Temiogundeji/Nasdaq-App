@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, SafeAreaView, TextInput, ActivityIndicator, View } from 'react-native';
+import {
+  StyleSheet,
+  SafeAreaView,
+  TextInput,
+  ActivityIndicator,
+  View,
+  TouchableOpacity,
+} from 'react-native';
 import { List, Divider, Card, Input } from '@ui-kitten/components';
 import StockListItem from '../components/StockListItem';
 import { useAppState, useActions } from '../overmind';
-// import SearchBar from '../components/SearchBar';
 
-const renderItem = ({ item, index }) => (
-  <StockListItem id={index} ticker={item.ticker} name={item.name} />
-);
-const StockList = () => {
+const StockList = ({ navigation }) => {
   const [stocks, setStocks] = useState([]);
   const [query, setQuery] = useState('');
   const [arrayData, setArrayData] = useState([]);
@@ -24,6 +27,10 @@ const StockList = () => {
     setStocks(newData);
     setQuery(text);
   };
+
+  // const handlePress = (item) => {
+  //   navigation.navigate('StockDetailsScreen', { data: item });
+  // };
 
   useEffect(() => {
     action.getStocks();
@@ -47,19 +54,9 @@ const StockList = () => {
         <Input
           value={query}
           onChangeText={(queryText) => searchData(queryText)}
-          autoFocus={true}
+          autoFocus={false}
           placeholder="Search stocks"
-          style={{
-            // marginHorizontal: 2,
-            marginVertical: 15,
-            position: 'relative',
-            top: 20,
-            borderWidth: 1,
-            borderColor: 'coral',
-            paddingVertical: 5,
-            paddingHorizontal: 5,
-            borderRadius: 10,
-          }}
+          style={Styles.searhBoxStyle}
         />
       </Card>
     );
@@ -74,10 +71,21 @@ const StockList = () => {
         ItemSeparatorComponent={Divider}
         initialNumToRender={5}
         onEndReachedThreshold={5}
-        renderItem={renderItem}
+        renderItem={({ item, index }) => (
+          <StockListItem
+            handlePress={() => {
+              navigation.navigate('StockDetailsScreen', {
+                data: item,
+              });
+            }}
+            id={index}
+            ticker={item.ticker}
+            name={item.name}
+          />
+        )}
       />
       <View style={Styles.footer}>
-        {isLoadingStocks ? <ActivityIndicator size="large" color="red" /> : null}
+        {isLoadingStocks ? <ActivityIndicator size="large" color="coral" /> : null}
       </View>
     </SafeAreaView>
   );
@@ -90,6 +98,17 @@ const Styles = StyleSheet.create({
     paddingLeft: 12,
     paddingTop: 5,
     marginBottom: 5,
+  },
+  searhBoxStyle: {
+    // marginHorizontal: 2,
+    marginVertical: 15,
+    position: 'relative',
+    top: 20,
+    borderWidth: 1,
+    borderColor: 'coral',
+    paddingVertical: 5,
+    paddingHorizontal: 5,
+    borderRadius: 10,
   },
   footerStyle: {
     height: 50,

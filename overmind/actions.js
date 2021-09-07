@@ -4,10 +4,10 @@ export const getStocks = async ({ state, effects }) => {
   state.isLoadingStocks = false;
 };
 
-export const getStockDetails = async ({ state, effects }) => {
+export const getStockDetails = async ({ state, effects }, ticker) => {
   state.isLoadingStockDetailsData = true;
-  state.stockDetailsData = await effects.getStockDetails();
-  state.stockPrevData = await effects.getStockPrevData();
+  state.stockDetailsData = await effects.getStockDetails(ticker);
+  state.stockPrevData = await effects.getStockPrevData(ticker);
   state.isLoadingStockDetailsData = false;
 };
 

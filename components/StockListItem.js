@@ -2,10 +2,10 @@ import React from 'react';
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import { Card, Text } from '@ui-kitten/components';
 
-const StockListItem = ({ ticker, name }) => {
+const StockListItem = ({ ticker, name, handlePress = () => {} }) => {
   return (
     <Card style={Styles.card}>
-      <TouchableOpacity onPress={() => handlePress(ticker)}>
+      <TouchableOpacity onPress={() => handlePress()}>
         <View style={Styles.container}>
           <Text style={Styles.ticker}>{ticker}</Text>
           <Text style={Styles.name}>{name}</Text>

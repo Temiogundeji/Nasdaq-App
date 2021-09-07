@@ -2,18 +2,24 @@ import React from 'react';
 import { View, StyleSheet, TouchableWithoutFeedback } from 'react-native';
 import { Icon, Input, Card, Text } from '@ui-kitten/components';
 
-const SearchBar = ({ handleSearch = () => {}, queryText }) => {
-  //Todo: Add Search Icon to Form
+const SearchBar = ({ query, handleSearch = () => {} }) => {
   return (
-    <Card style={Styles.container}>
-      <Text style={Styles.title}>Explore Stock</Text>
+    <Card>
       <Input
-        clearButtonMode="always"
-        style={Styles.input}
-        onChangeText={() => handleSearch(queryText)}
-        placeholder="Search"
-        value={queryText}
-        autoCorrect={false}
+        value={query}
+        onChangeText={(queryText) => handleSearch(queryText)}
+        autoFocus={true}
+        placeholder="Search stocks"
+        style={{
+          marginVertical: 15,
+          position: 'relative',
+          top: 20,
+          borderWidth: 1,
+          borderColor: 'coral',
+          paddingVertical: 5,
+          paddingHorizontal: 5,
+          borderRadius: 10,
+        }}
       />
     </Card>
   );

@@ -10,16 +10,16 @@ const StockStatistics = (props) => {
         <Text style={Styles.title}>Statistics</Text>
         <View style={Styles.statRow}>
           <View style={Styles.itemStyle}>
-            <Text style={Styles.titleStyle}>Open</Text>
-            <Text>{o || 142.01}</Text>
+            <Text style={Styles.titleStyle}>Volume</Text>
+            <Text>{v || 142.01}</Text>
           </View>
           <View style={Styles.itemStyle}>
             <Text style={Styles.titleStyle}>Close</Text>
             <Text>{c || 142.01}</Text>
           </View>
           <View style={Styles.itemStyle}>
-            <Text style={Styles.titleStyle}>Volume</Text>
-            <Text>{v || 142.01}</Text>
+            <Text style={Styles.titleStyle}>Open</Text>
+            <Text>{o || 142.01}</Text>
           </View>
         </View>
         <View style={Styles.statRow}>
