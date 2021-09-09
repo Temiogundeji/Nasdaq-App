@@ -1,6 +1,7 @@
 import React from 'react';
 import * as eva from '@eva-design/eva';
-import { ApplicationProvider } from '@ui-kitten/components';
+// import { ApplicationProvider } from '@ui-kitten/components';
+import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 import Navigator from './navigation/routes';
 import { createOvermind } from 'overmind';
 import { Provider } from 'overmind-react';
@@ -14,12 +15,21 @@ if (module.hot) {
   module.hot.accept();
 }
 
+const theme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    primary: 'tomato',
+    accent: 'yellow',
+  },
+};
+
 export default function App() {
   return (
     <Provider value={overmind}>
-      <ApplicationProvider {...eva} theme={eva.light}>
+      <PaperProvider theme={theme}>
         <Navigator />
-      </ApplicationProvider>
+      </PaperProvider>
     </Provider>
   );
 }

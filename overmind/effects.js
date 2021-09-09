@@ -1,4 +1,6 @@
 import { stockAPI } from '../shared/api';
+import { storeData, getData } from '../shared/utils';
+
 export const getStocks = async () => {
   const response = await fetch(stockAPI.stocks);
   return response.json();

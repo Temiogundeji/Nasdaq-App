@@ -1,7 +1,8 @@
 import React from 'react';
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
-import { Text, Card } from '@ui-kitten/components';
+import { Text, Card } from 'react-native-paper';
 import * as Linking from 'expo-linking';
+import { truncateString } from '../shared/utils';
 
 const AboutStock = ({ industry, description, url }) => {
   const handlePress = () => {
@@ -19,14 +20,11 @@ const AboutStock = ({ industry, description, url }) => {
         </View>
         <View style={Styles.industrySection}>
           <Text style={Styles.industryHeading}>Industry</Text>
-          <Text style={Styles.industryText}>{industry || 'Computer Hardware'}</Text>
+          <Text style={Styles.industryText}>{industry}</Text>
         </View>
         <View style={Styles.description}>
           <Text style={Styles.descriptionHeading}>Description</Text>
-          <Text style={Styles.descriptionText}>
-            {description ||
-              'Apple is a company founded by Steve Jobs and Steve Wozniak. Steve was the main man behind Apple. His death was pathetic.'}
-          </Text>
+          <Text style={Styles.descriptionText}>{description}</Text>
         </View>
       </Card>
     </View>
@@ -59,38 +57,19 @@ const Styles = StyleSheet.create({
     padding: 10,
   },
   buttonText: {
-    color: 'coral',
+    color: '#0066f5',
     fontSize: 12,
     fontWeight: 'bold',
   },
   card: {
-    // backgroundColor: 'coral',
-    backgroundColor: 'coral',
+    backgroundColor: '#0066f5',
     borderRadius: 10,
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
-    borderColor: 'coral',
-    paddingTop: 20,
-    paddintBottom: 10,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-
-    elevation: 5,
-    height: 350,
-  },
-  card: {
-    backgroundColor: 'coral',
-    borderRadius: 10,
-    display: 'flex',
-    height: 250,
-    flexDirection: 'column',
-    borderColor: 'coral',
+    borderColor: '#0066f5',
+    paddingVertical: 20,
+    paddingHorizontal: 20,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -105,18 +84,19 @@ const Styles = StyleSheet.create({
     marginBottom: 20,
   },
   industryHeading: {
-    color: '#fff',
+    color: '#0a2e65',
     fontSize: 14,
-  },
-  industryText: {
-    color: '#000',
     fontWeight: 'bold',
   },
+  industryText: {
+    color: '#c5cedc',
+  },
   descriptionHeading: {
-    color: '#fff',
+    color: '#0a2e65',
+    fontWeight: 'bold',
   },
   descriptionText: {
-    color: '#000',
+    color: '#c5cedc',
     fontSize: 14,
   },
 });

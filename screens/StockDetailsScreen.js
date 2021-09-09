@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { View, StyleSheet, ActivityIndicator } from 'react-native';
+import { View, StyleSheet, ActivityIndicator, ScrollView } from 'react-native';
 import StockHeaderCard from '../components/StockHeaderCard';
 import StockStatistics from '../components/StockStatistics';
 import AboutStock from '../components/AboutStock';
 import { useAppState, useActions } from '../overmind';
+import CustomNavigationBar from '../components/customHeader';
 
 const StockDetailsScreen = ({ route, navigation }) => {
   const [stockDetails, setStockDetails] = useState([]);
@@ -23,7 +24,7 @@ const StockDetailsScreen = ({ route, navigation }) => {
   const { isLoadingStockDetails, stockDetailsData, stockPrevData } = state;
   const Loader = () => {
     const loaderElement = isLoadingStockDetails ? (
-      <ActivityIndicator size="large" color="coral" />
+      <ActivityIndicator size="large" color="#0066f5" />
     ) : null;
     return loaderElement;
   };
@@ -36,14 +37,22 @@ const StockDetailsScreen = ({ route, navigation }) => {
   }, [stockDetailsData, stockPrevData]);
 
   const stat = statData[0];
-  const { description, logo, url, industry } = stockDetails;
+  const { description, logo, url, industry, symbol } = stockDetails;
 
   return (
     <View style={Styles.container}>
-      <StockHeaderCard name={name} ticker={ticker} logo={logo} price={stockDetails.price} />
-      <StockStatistics {...stat} />
-      <AboutStock url={url} industry={industry} description={description} />
-      <Loader />
+      <ScrollView>
+        <StockHeaderCard
+          name={name}
+          ticker={ticker}
+          logo={logo}
+          symbol={symbol}
+          price={stockDetails.price}
+        />
+        <StockStatistics {...stat} />
+        <AboutStock url={url} industry={industry} description={description} />
+        <Loader />
+      </ScrollView>
     </View>
   );
 };

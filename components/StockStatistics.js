@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
-import { Text, Card } from '@ui-kitten/components';
+import { Text, Card } from 'react-native-paper';
 
 const StockStatistics = (props) => {
   const { o, c, v, h, l } = props;
@@ -11,25 +11,25 @@ const StockStatistics = (props) => {
         <View style={Styles.statRow}>
           <View style={Styles.itemStyle}>
             <Text style={Styles.titleStyle}>Volume</Text>
-            <Text>{v || 142.01}</Text>
+            <Text style={Styles.priceStyle}>{v || 142.01}</Text>
           </View>
           <View style={Styles.itemStyle}>
             <Text style={Styles.titleStyle}>Close</Text>
-            <Text>{c || 142.01}</Text>
+            <Text style={Styles.priceStyle}>{c || 142.01}</Text>
           </View>
           <View style={Styles.itemStyle}>
             <Text style={Styles.titleStyle}>Open</Text>
-            <Text>{o || 142.01}</Text>
+            <Text style={Styles.priceStyle}>{o || 142.01}</Text>
           </View>
         </View>
         <View style={Styles.statRow}>
           <View style={Styles.itemStyle}>
             <Text style={Styles.titleStyle}>High</Text>
-            <Text>{h || 142.01}</Text>
+            <Text style={Styles.priceStyle}>{h || 142.01}</Text>
           </View>
           <View style={Styles.itemStyle}>
             <Text style={Styles.titleStyle}>Low</Text>
-            <Text>{l || 142.01}</Text>
+            <Text style={Styles.priceStyle}>{l || 142.01}</Text>
           </View>
         </View>
       </Card>
@@ -44,11 +44,12 @@ const Styles = StyleSheet.create({
     padding: 15,
   },
   card: {
-    backgroundColor: 'coral',
+    backgroundColor: '#0066f5',
     display: 'flex',
     flexDirection: 'column',
-    paddingLeft: 0,
-    borderColor: 'coral',
+    padding: 25,
+    paddingHorizontal: 20,
+    borderColor: '#0066f5',
     borderRadius: 10,
     shadowColor: '#000',
     shadowOffset: {
@@ -71,9 +72,12 @@ const Styles = StyleSheet.create({
     marginBottom: 5,
   },
   titleStyle: {
-    color: '#fff',
+    color: '#0a2e65',
     fontWeight: 'bold',
     marginBottom: 5,
+  },
+  priceStyle: {
+    color: '#c5cedc',
   },
   statRow: {
     display: 'flex',

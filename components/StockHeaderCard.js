@@ -1,4 +1,4 @@
-import { Card, Text } from '@ui-kitten/components';
+import { Card, Text } from 'react-native-paper';
 import React from 'react';
 import { StyleSheet, View, Image } from 'react-native';
 
@@ -8,13 +8,12 @@ const StockHeaderCard = ({ ticker, name, price, logo, symbol }) => {
       <Card style={Styles.card}>
         <View style={Styles.cardRow}>
           <View style={Styles.cardLeft}>
-            <Text style={Styles.ticker}> {ticker || 'APPL'}</Text>
-            <Text style={Styles.name}>{name || 'Apple Inc'}</Text>
-            <Text style={Styles.price}>
-              <Text style={{ fontSize: 25 }}>{'\u0024'}</Text> {price || 145.11}
-            </Text>
+            <Text style={Styles.ticker}> {ticker}</Text>
+            <Text style={Styles.name}>{name}</Text>
           </View>
-          <Image style={Styles.tinyLogo} source={{ uri: logo ? logo : symbol }} />
+          <View style={Styles.cardRight}>
+            <Text style={Styles.symbolText}>{symbol}</Text>
+          </View>
         </View>
       </Card>
     </View>
@@ -29,11 +28,11 @@ const Styles = StyleSheet.create({
     backgroundColor: 'oldlace',
   },
   card: {
-    display: 'flex',
-    flexDirection: 'row',
-    backgroundColor: 'coral',
+    backgroundColor: '#0066f5',
+    alignItems: 'center',
     borderRadius: 10,
-    borderColor: 'coral',
+    paddingVertical: 20,
+    borderColor: '#0066f5',
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -46,27 +45,33 @@ const Styles = StyleSheet.create({
   cardRow: {
     display: 'flex',
     flexDirection: 'row',
+    justifyContent: 'center',
     alignItems: 'center',
-    justifyContent: 'space-between',
+    height: 100,
   },
   cardLeft: {
-    width: '70%',
+    width: '75%',
+  },
+  cardRight: {
+    // width: '20%',
   },
   tinyLogo: {
     width: 50,
     height: 50,
   },
   ticker: {
-    fontSize: 14,
+    fontSize: 17,
     textTransform: 'uppercase',
     color: '#fff',
     fontWeight: 'bold',
   },
   name: {
-    fontSize: 12,
+    fontSize: 15,
+    color: '#c5cedc',
   },
-  price: {
-    fontSize: 32,
+  symbolText: {
+    color: '#c5cedc',
+    fontSize: 17,
     fontWeight: 'bold',
   },
 });

@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
-import { Card, Text } from '@ui-kitten/components';
+import { Card, Text } from 'react-native-paper';
 
 const StockListItem = ({ ticker, name, handlePress = () => {} }) => {
   return (
@@ -22,19 +22,21 @@ const Styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   ticker: {
-    fontSize: 15,
+    fontSize: 18,
     fontWeight: 'bold',
     textTransform: 'uppercase',
   },
   name: {
-    fontSize: 12,
+    fontSize: 14,
     color: '#ffffff',
     marginBottom: 5,
   },
   card: {
-    backgroundColor: 'coral',
-    borderColor: 'coral',
+    backgroundColor: '#0066f5',
+    borderRadius: 5,
+    borderColor: '#0066f5',
     marginBottom: 5,
+    padding: 10,
   },
 });
 export default StockListItem;
