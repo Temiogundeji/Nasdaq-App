@@ -85,19 +85,21 @@ const Styles = StyleSheet.create({
   },
   industryHeading: {
     color: '#0a2e65',
-    fontSize: 14,
+    fontSize: 18,
     fontWeight: 'bold',
   },
   industryText: {
     color: '#c5cedc',
+    fontSize: 16,
   },
   descriptionHeading: {
     color: '#0a2e65',
     fontWeight: 'bold',
+    fontSize: 18,
   },
   descriptionText: {
     color: '#c5cedc',
-    fontSize: 14,
+    fontSize: 16,
   },
 });
 

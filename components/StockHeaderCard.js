@@ -60,18 +60,18 @@ const Styles = StyleSheet.create({
     height: 50,
   },
   ticker: {
-    fontSize: 17,
+    fontSize: 18,
     textTransform: 'uppercase',
     color: '#fff',
     fontWeight: 'bold',
   },
   name: {
-    fontSize: 15,
+    fontSize: 16,
     color: '#c5cedc',
   },
   symbolText: {
     color: '#c5cedc',
-    fontSize: 17,
+    fontSize: 18,
     fontWeight: 'bold',
   },
 });

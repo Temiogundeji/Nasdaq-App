@@ -1,13 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {
-  StyleSheet,
-  SafeAreaView,
-  Text,
-  ActivityIndicator,
-  View,
-  TouchableOpacity,
-  FlatList,
-} from 'react-native';
+import { StyleSheet, SafeAreaView, Text, ActivityIndicator, FlatList } from 'react-native';
 // import { List, Divider, Card, Input } from '@ui-kitten/components';
 import StockListItem from '../components/StockListItem';
 import { useAppState, useActions } from '../overmind';
@@ -65,12 +57,11 @@ const StockList = ({ navigation }) => {
           value={query}
         />
       </Card>
-
       <FlatList
         style={Styles.container}
         data={stocks}
         // ItemSeparatorComponent={Divider}
-        keyExtractor={(item, index) => index}
+        keyExtractor={(item, index) => item.ticker}
         initialNumToRender={5}
         onEndReachedThreshold={5}
         renderItem={({ item, index }) => (
@@ -108,6 +99,7 @@ const Styles = StyleSheet.create({
   searhBoxStyle: {
     margin: 15,
     marginVertical: 30,
+    color: '#c5cedc',
     position: 'relative',
     top: 20,
     borderWidth: 1,

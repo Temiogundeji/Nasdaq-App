@@ -49,6 +49,7 @@ const Styles = StyleSheet.create({
     flexDirection: 'column',
     padding: 25,
     paddingHorizontal: 20,
+    paddingVertical: 15,
     borderColor: '#0066f5',
     borderRadius: 10,
     shadowColor: '#000',
@@ -65,7 +66,7 @@ const Styles = StyleSheet.create({
     width: '30%',
   },
   title: {
-    fontSize: 17,
+    fontSize: 18,
     fontWeight: 'bold',
     alignSelf: 'flex-start',
     color: '#fff',
@@ -73,11 +74,13 @@ const Styles = StyleSheet.create({
   },
   titleStyle: {
     color: '#0a2e65',
+    fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 5,
   },
   priceStyle: {
     color: '#c5cedc',
+    fontSize: 16,
   },
   statRow: {
     display: 'flex',

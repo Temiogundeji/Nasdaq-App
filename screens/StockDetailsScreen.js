@@ -4,11 +4,10 @@ import StockHeaderCard from '../components/StockHeaderCard';
 import StockStatistics from '../components/StockStatistics';
 import AboutStock from '../components/AboutStock';
 import { useAppState, useActions } from '../overmind';
-import CustomNavigationBar from '../components/customHeader';
 
 const StockDetailsScreen = ({ route, navigation }) => {
   const [stockDetails, setStockDetails] = useState([]);
-  const [statData, setStatData] = useState([]);
+  const [statData, setStatData] = useState({});
 
   const state = useAppState();
   const action = useActions();
@@ -30,9 +29,9 @@ const StockDetailsScreen = ({ route, navigation }) => {
   };
 
   useEffect(() => {
-    if (stockDetailsData && stockPrevData) {
+    if (typeof stockDetailsData !== 'undefined' && typeof stockPrevData !== 'undefined') {
       setStockDetails(stockDetailsData);
-      setStatData(stockPrevData.results);
+      setStatData({ ...stockPrevData.results });
     }
   }, [stockDetailsData, stockPrevData]);
 
