@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Text, Card } from 'react-native-paper';
+import { globalStyles } from '../shared/globalStyles';
 
 const StockStatistics = (props) => {
   const { o, c, v, h, l } = props;
@@ -44,7 +45,7 @@ const Styles = StyleSheet.create({
     padding: 15,
   },
   card: {
-    backgroundColor: '#0066f5',
+    backgroundColor: '#ffffff',
     display: 'flex',
     flexDirection: 'column',
     padding: 25,
@@ -73,8 +74,8 @@ const Styles = StyleSheet.create({
     marginBottom: 5,
   },
   titleStyle: {
-    color: '#0a2e65',
-    fontSize: 18,
+    color: globalStyles.primaryColor,
+    fontSize: globalStyles.normalFontSize,
     fontWeight: 'bold',
     marginBottom: 5,
   },
@@ -88,9 +89,6 @@ const Styles = StyleSheet.create({
     flexWrap: 'nowrap',
     width: 390,
     marginBottom: 50,
-  },
-  colSize: {
-    // marginRight: 40,
   },
   layout: {
     flex: 1,

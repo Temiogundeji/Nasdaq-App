@@ -20,6 +20,7 @@ const Styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
+    paddingHorizontal: 20,
   },
   ticker: {
     fontSize: 18,
@@ -28,15 +29,24 @@ const Styles = StyleSheet.create({
   },
   name: {
     fontSize: 14,
-    color: '#ffffff',
+    color: '#0066f5',
     marginBottom: 5,
   },
   card: {
-    backgroundColor: '#0066f5',
+    backgroundColor: '#ffffff',
     borderRadius: 5,
     borderColor: '#0066f5',
     marginBottom: 5,
     padding: 10,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.23,
+    shadowRadius: 2.62,
+
+    elevation: 4,
   },
 });
 export default StockListItem;

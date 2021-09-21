@@ -1,6 +1,7 @@
 import { Card, Text } from 'react-native-paper';
 import React from 'react';
 import { StyleSheet, View, Image } from 'react-native';
+import { globalStyles } from '../shared/globalStyles';
 
 const StockHeaderCard = ({ ticker, name, price, logo, symbol }) => {
   return (
@@ -25,10 +26,10 @@ const Styles = StyleSheet.create({
     display: 'flex',
     padding: 15,
     paddingTop: 55,
-    backgroundColor: 'oldlace',
+    backgroundColor: globalStyles.secondaryColor,
   },
   card: {
-    backgroundColor: '#0066f5',
+    backgroundColor: globalStyles.primaryColor,
     alignItems: 'center',
     borderRadius: 10,
     paddingVertical: 20,
@@ -62,15 +63,15 @@ const Styles = StyleSheet.create({
   ticker: {
     fontSize: 18,
     textTransform: 'uppercase',
-    color: '#fff',
+    color: globalStyles.secondaryColor,
     fontWeight: 'bold',
   },
   name: {
     fontSize: 16,
-    color: '#c5cedc',
+    color: globalStyles.secondaryColor,
   },
   symbolText: {
-    color: '#c5cedc',
+    color: globalStyles.secondaryColor,
     fontSize: 18,
     fontWeight: 'bold',
   },

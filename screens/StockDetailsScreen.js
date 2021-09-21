@@ -4,6 +4,7 @@ import StockHeaderCard from '../components/StockHeaderCard';
 import StockStatistics from '../components/StockStatistics';
 import AboutStock from '../components/AboutStock';
 import { useAppState, useActions } from '../overmind';
+import { globalStyles } from '../shared/globalStyles';
 
 const StockDetailsScreen = ({ route, navigation }) => {
   const [stockDetails, setStockDetails] = useState([]);
@@ -59,7 +60,7 @@ const StockDetailsScreen = ({ route, navigation }) => {
 const Styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'oldlace',
+    backgroundColor: globalStyles.secondaryColor,
   },
 });
 

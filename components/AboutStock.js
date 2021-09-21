@@ -3,6 +3,7 @@ import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import { Text, Card } from 'react-native-paper';
 import * as Linking from 'expo-linking';
 import { truncateString } from '../shared/utils';
+import { globalStyles } from '../shared/globalStyles';
 
 const AboutStock = ({ industry, description, url }) => {
   const handlePress = () => {
@@ -41,19 +42,15 @@ const Styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
-  about: {
-    fontSize: 19,
-    fontWeight: 'bold',
-  },
   title: {
     color: '#fff',
-    fontSize: 18,
+    fontSize: globalStyles.headingFontSize,
     fontWeight: 'bold',
   },
   button: {
-    backgroundColor: '#fff',
-    borderColor: '#fff',
+    borderColor: '#0066f5',
     borderRadius: 10,
+    borderWidth: 1,
     padding: 10,
   },
   buttonText: {
@@ -62,7 +59,7 @@ const Styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   card: {
-    backgroundColor: '#0066f5',
+    backgroundColor: '#ffffff',
     borderRadius: 10,
     display: 'flex',
     flexDirection: 'column',
@@ -84,22 +81,23 @@ const Styles = StyleSheet.create({
     marginBottom: 20,
   },
   industryHeading: {
-    color: '#0a2e65',
-    fontSize: 18,
+    color: globalStyles.primaryColor,
+    fontSize: globalStyles.headingFontSize,
     fontWeight: 'bold',
   },
   industryText: {
-    color: '#c5cedc',
-    fontSize: 16,
+    color: globalStyles.normalTextColor,
+    fontSize: globalStyles.normalFontSize,
   },
   descriptionHeading: {
-    color: '#0a2e65',
+    color: globalStyles.primaryColor,
     fontWeight: 'bold',
-    fontSize: 18,
+    fontSize: globalStyles.headingFontSize,
   },
   descriptionText: {
     color: '#c5cedc',
-    fontSize: 16,
+    fontSize: globalStyles.normalFontSize,
+    lineHeight: 22,
   },
 });
 
