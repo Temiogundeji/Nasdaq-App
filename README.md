@@ -3,12 +3,14 @@
 
 The app is a stock market app. It should show all stocks listed in Nasdaq exchange with their ticker, name, and details.
 
-**Features:**
+### Features:
 
 **Screen: Explore Screen:**
 
 - Stock List: It shows all the list of stocks listed on the Nasdaq stock exchange.
+
 - Search Feature: It enables the user to be able to easily search for stocks.
+
 - Load more on scroll: It enables the user to be able to load more data while scrolling towards the end of the page.
 
 **Screen: Stock Details Screen:**
@@ -22,7 +24,7 @@ The app is a stock market app. It should show all stocks listed in Nasdaq exchan
 - **React Native (Expo):**
 This was used in building the client side of the application. 
 
--**React Native Paper:**
+- **React Native Paper:**
 A UI Libarary for React Native was used in creation of the User Interface.
 
 - **NodeJS:**
