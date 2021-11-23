@@ -1,48 +1,34 @@
 import React from 'react';
-import { View, StyleSheet, TouchableWithoutFeedback } from 'react-native';
-import { Icon, Input, Card, Text } from '@ui-kitten/components';
+import { StyleSheet } from 'react-native';
+import { Searchbar } from 'react-native-paper';
+import { globalStyles } from '../shared/globalStyles';
 
-const SearchBar = ({ query, handleSearch = () => {} }) => {
+const SearchBar = ({ handleChangeText = () => {}, searchQuery }) => {
   return (
-    <Card>
-      <Input
-        value={query}
-        onChangeText={(queryText) => handleSearch(queryText)}
-        autoFocus={true}
-        placeholder="Search stocks"
-        style={{
-          marginVertical: 15,
-          position: 'relative',
-          top: 20,
-          borderWidth: 1,
-          borderColor: 'coral',
-          paddingVertical: 5,
-          paddingHorizontal: 5,
-          borderRadius: 10,
-        }}
-      />
-    </Card>
+    <Searchbar
+      testID="searchbar"
+      style={Styles.searhBoxStyle}
+      placeholder="Search stocks"
+      onChangeText={handleChangeText}
+      value={searchQuery}
+    />
   );
 };
 
 const Styles = StyleSheet.create({
-  container: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    height: 140,
+  stockHeader: {
+    marginBottom: 10,
+  },
+  searhBoxStyle: {
+    margin: 15,
+    marginVertical: 30,
+    color: '#c5cedc',
     position: 'relative',
-    padding: 5,
-  },
-  title: {
-    color: '#aaaaa0',
-    fontSize: 16,
-    fontWeight: 'bold',
-    marginTop: 30,
-    marginBottom: 5,
-  },
-  input: {
-    borderRadius: 12,
+    top: 20,
+    borderWidth: 1,
+    height: 45,
+    borderColor: globalStyles.primaryColor,
+    borderRadius: 10,
   },
 });
 

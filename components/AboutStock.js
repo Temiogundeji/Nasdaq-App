@@ -1,9 +1,9 @@
 import React from 'react';
-import { View, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { Text, Card } from 'react-native-paper';
 import * as Linking from 'expo-linking';
-import { truncateString } from '../shared/utils';
 import { globalStyles } from '../shared/globalStyles';
+import WebsiteButton from './WebsiteButton';
 
 const AboutStock = ({ industry, description, url }) => {
   const handlePress = () => {
@@ -15,17 +15,19 @@ const AboutStock = ({ industry, description, url }) => {
       <Card style={Styles.card}>
         <View style={Styles.aboutHeader}>
           <Text style={Styles.title}>About</Text>
-          <TouchableOpacity style={Styles.button} onPress={() => handlePress()}>
-            <Text style={Styles.buttonText}>Website</Text>
-          </TouchableOpacity>
+          <WebsiteButton testID={'website'} handlePress={() => handlePress()} />
         </View>
         <View style={Styles.industrySection}>
           <Text style={Styles.industryHeading}>Industry</Text>
-          <Text style={Styles.industryText}>{industry}</Text>
+          <Text testID={'industry'} style={Styles.industryText}>
+            {industry}
+          </Text>
         </View>
         <View style={Styles.description}>
           <Text style={Styles.descriptionHeading}>Description</Text>
-          <Text style={Styles.descriptionText}>{description}</Text>
+          <Text testID={'description'} style={Styles.descriptionText}>
+            {description}
+          </Text>
         </View>
       </Card>
     </View>
@@ -36,6 +38,7 @@ const Styles = StyleSheet.create({
   container: {
     display: 'flex',
     padding: 15,
+    height: '50%',
   },
   aboutHeader: {
     display: 'flex',
@@ -45,17 +48,6 @@ const Styles = StyleSheet.create({
   title: {
     color: '#fff',
     fontSize: globalStyles.headingFontSize,
-    fontWeight: 'bold',
-  },
-  button: {
-    borderColor: '#0066f5',
-    borderRadius: 10,
-    borderWidth: 1,
-    padding: 10,
-  },
-  buttonText: {
-    color: '#0066f5',
-    fontSize: 12,
     fontWeight: 'bold',
   },
   card: {
@@ -84,6 +76,7 @@ const Styles = StyleSheet.create({
     color: globalStyles.primaryColor,
     fontSize: globalStyles.headingFontSize,
     fontWeight: 'bold',
+    marginBottom: 1,
   },
   industryText: {
     color: globalStyles.normalTextColor,
@@ -93,9 +86,10 @@ const Styles = StyleSheet.create({
     color: globalStyles.primaryColor,
     fontWeight: 'bold',
     fontSize: globalStyles.headingFontSize,
+    marginBottom: 10,
   },
   descriptionText: {
-    color: '#c5cedc',
+    color: globalStyles.normalTextColor,
     fontSize: globalStyles.normalFontSize,
     lineHeight: 22,
   },

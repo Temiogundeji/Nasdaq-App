@@ -80,8 +80,9 @@ const Styles = StyleSheet.create({
     marginBottom: 5,
   },
   priceStyle: {
-    color: '#c5cedc',
-    fontSize: 16,
+    color: globalStyles.normalTextColor,
+    fontSize: globalStyles.normalFontSize,
+    lineHeight: 22,
   },
   statRow: {
     display: 'flex',

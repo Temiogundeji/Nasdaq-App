@@ -5,6 +5,7 @@ import StockStatistics from '../components/StockStatistics';
 import AboutStock from '../components/AboutStock';
 import { useAppState, useActions } from '../overmind';
 import { globalStyles } from '../shared/globalStyles';
+import { truncateString } from '../shared/utils';
 
 const StockDetailsScreen = ({ route, navigation }) => {
   const [stockDetails, setStockDetails] = useState([]);
@@ -34,7 +35,7 @@ const StockDetailsScreen = ({ route, navigation }) => {
       setStockDetails(stockDetailsData);
       setStatData({ ...stockPrevData.results });
     }
-  }, [stockDetailsData, stockPrevData]);
+  }, [stockDetails, stockPrevData]);
 
   const stat = statData[0];
   const { description, logo, url, industry, symbol } = stockDetails;
@@ -50,17 +51,28 @@ const StockDetailsScreen = ({ route, navigation }) => {
           price={stockDetails.price}
         />
         <StockStatistics {...stat} />
-        <AboutStock url={url} industry={industry} description={description} />
+        <AboutStock
+          url={url}
+          industry={industry}
+          description={
+            description
+              ? description.length > 100
+                ? truncateString(description, 100) + '...'
+                : description
+              : true
+          }
+        />
         <Loader />
       </ScrollView>
     </View>
   );
 };
-
+//
 const Styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: globalStyles.secondaryColor,
+    height: 500,
   },
 });
 

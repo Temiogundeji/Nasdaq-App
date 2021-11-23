@@ -1,21 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import {
   StyleSheet,
-  SafeAreaView,
+  View,
   Text,
   ActivityIndicator,
   FlatList,
   StatusBar,
   Dimensions,
 } from 'react-native';
+import { Card } from 'react-native-paper';
 import StockListItem from '../components/StockListItem';
 import { useAppState, useActions } from '../overmind';
-import { Card, Searchbar } from 'react-native-paper';
 import StockListFooter from '../components/StockListFooter';
 import { globalStyles } from '../shared/globalStyles';
+import SearchBar from '../components/SearchBar';
 
 const apiKey = 'MnkF9A6CCEkkkppQiVNZGMySJEc2b_yI';
-
 const TIME_TO_REFETCH = 60000;
 
 const ExploreScreen = ({ navigation }) => {
@@ -37,6 +37,7 @@ const ExploreScreen = ({ navigation }) => {
     });
     setStocks(newData);
     setQuery(text);
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -46,6 +47,8 @@ const ExploreScreen = ({ navigation }) => {
   const {
     isLoadingStocks,
     stocks: { results, next_url },
+    moreStocks,
+    isLoadingMore,
   } = state;
 
   useEffect(() => {
@@ -60,10 +63,11 @@ const ExploreScreen = ({ navigation }) => {
       setStocks(results);
       setDataArray(results);
       setNextPageUrl(next_url);
+      setLoading(isLoadingStocks);
     }
   }, [results]);
 
-  const loadMoreData = () => {
+  const loadMoreStocksData = () => {
     if (!loading) {
       setLoading(true);
       fetch(nextPageUrl + `&apiKey=${apiKey}`)
@@ -86,44 +90,50 @@ const ExploreScreen = ({ navigation }) => {
   };
 
   return (
-    <SafeAreaView style={Styles.screenContainer}>
+    <View style={Styles.screenContainer}>
       <Card style={Styles.stockHeader}>
-        <Searchbar
-          style={Styles.searhBoxStyle}
-          placeholder="Search stocks"
-          onChangeText={(query) => searchData(query)}
-          value={query}
+        <SearchBar handleChangeText={(query) => searchData(query)} searchQuery={query} />
+      </Card>
+      <View>
+        <FlatList
+          style={Styles.container}
+          data={stocks}
+          keyExtractor={(item, index) => item.ticker}
+          onEndReached={loadMoreStocksData}
+          // onEndReachedSnapShot={0.5}
+          // snapToInterval={Dimensions.get('window').height}
+          ListFooterComponent={<StockListFooter isLoading={loading} />}
+          renderItem={({ item, index }) => (
+            <StockListItem
+              index={index}
+              handlePress={() => {
+                navigation.navigate('StockDetailsScreen', {
+                  data: item,
+                });
+              }}
+              id={index}
+              ticker={item.ticker}
+              name={item.name}
+            />
+          )}
+          ListEmptyComponent={() => {
+            if (isLoadingStocks) {
+              return (
+                <ActivityIndicator
+                  testID="loader"
+                  size="medium"
+                  color={globalStyles.primaryColor}
+                />
+              );
+            }
+            return <Text testID="no-results">Sorry, no results found.</Text>;
+          }}
         />
-      </Card>
-      <FlatList
-        style={Styles.container}
-        data={stocks}
-        keyExtractor={(item, index) => item.ticker}
-        onEndReached={loadMoreData}
-        onEndReachedThreshold={0.6}
-        snapToInterval={Dimensions.get('window').height}
-        ListFooterComponent={<StockListFooter isLoading={loading} />}
-        renderItem={({ item, index }) => (
-          <StockListItem
-            handlePress={() => {
-              navigation.navigate('StockDetailsScreen', {
-                data: item,
-              });
-            }}
-            id={index}
-            ticker={item.ticker}
-            name={item.name}
-          />
-        )}
-      />
+      </View>
       <Card style={Styles.footerStyle}>
-        {isLoadingStocks ? (
-          <ActivityIndicator size="small" color="#0066f5" />
-        ) : (
-          <Text style={Styles.footerText}>Explore Stocks</Text>
-        )}
+        <Text style={Styles.footerText}>Explore Stocks</Text>
       </Card>
-    </SafeAreaView>
+    </View>
   );
 };
 
@@ -133,18 +143,7 @@ const Styles = StyleSheet.create({
     paddingLeft: 10,
     paddingTop: 5,
     marginBottom: 5,
-    height: 620,
-  },
-  searhBoxStyle: {
-    margin: 15,
-    marginVertical: 30,
-    color: '#c5cedc',
-    position: 'relative',
-    top: 20,
-    borderWidth: 1,
-    height: 45,
-    borderColor: globalStyles.primaryColor,
-    borderRadius: 10,
+    height: 650,
   },
   screenContainer: {
     height: Dimensions.get('window').height + StatusBar.currentHeight,
@@ -156,6 +155,7 @@ const Styles = StyleSheet.create({
     flex: 1,
     height: 50,
     backgroundColor: '#ffffff',
+    justifyContent: 'center',
     alignItems: 'center',
   },
   footerText: {

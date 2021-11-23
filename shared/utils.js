@@ -27,26 +27,11 @@ export const deleteData = async (title) => {
   }
 };
 
-//Truncate about string
-export const truncateString = (str, num) => {
-  let strLength = str.length;
-  let slicedStr = '';
-  if (strLength > num) {
-    slicedStr = str.substring(0, num);
-    slicedStr = slicedStr + '...';
-  } else {
-    slicedStr = str;
-  }
-  return slicedStr;
-};
-
-//fetch stocks from api from a particular number
-export const STOCKS_PER_FETCH = 5;
-export const fetchStocks = (startingId = 0, data) => {
-  let loadedStocks = [];
-  for(let i=startingId; i < startingId + STOCKS_PER_FETCH; i++){
-    if(data[i] === undefined) break;
-      loadedStocks.push(data[i]);
-  }
-  return obj;
+export const truncateString = (str, maxLength) => {
+  let trimmedString = str.substr(0, maxLength);
+  trimmedString = trimmedString.substr(
+    0,
+    Math.min(trimmedString.length, trimmedString.lastIndexOf(' '))
+  );
+  return trimmedString;
 };

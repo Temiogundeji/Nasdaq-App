@@ -3,17 +3,25 @@ import React from 'react';
 import { StyleSheet, View, Image } from 'react-native';
 import { globalStyles } from '../shared/globalStyles';
 
-const StockHeaderCard = ({ ticker, name, price, logo, symbol }) => {
+const StockHeaderCard = ({ ticker, name, symbol }) => {
   return (
     <View style={Styles.container}>
       <Card style={Styles.card}>
         <View style={Styles.cardRow}>
           <View style={Styles.cardLeft}>
-            <Text style={Styles.ticker}> {ticker}</Text>
-            <Text style={Styles.name}>{name}</Text>
+            <Text testID="ticker" style={Styles.ticker}>
+              {' '}
+              {ticker}
+            </Text>
+            <Text testID="name" style={Styles.name}>
+              {' '}
+              {name ? (name.length > 30 ? name.slice(0, 30) + '...' : name) : true}
+            </Text>
           </View>
           <View style={Styles.cardRight}>
-            <Text style={Styles.symbolText}>{symbol}</Text>
+            <Text testID="symbol" style={Styles.symbolText}>
+              {symbol}
+            </Text>
           </View>
         </View>
       </Card>
@@ -27,6 +35,7 @@ const Styles = StyleSheet.create({
     padding: 15,
     paddingTop: 55,
     backgroundColor: globalStyles.secondaryColor,
+    height: 210,
   },
   card: {
     backgroundColor: globalStyles.primaryColor,
