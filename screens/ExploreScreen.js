@@ -121,7 +121,7 @@ const ExploreScreen = ({ navigation }) => {
               return (
                 <ActivityIndicator
                   testID="loader"
-                  size="medium"
+                  size={20}
                   color={globalStyles.primaryColor}
                 />
               );
